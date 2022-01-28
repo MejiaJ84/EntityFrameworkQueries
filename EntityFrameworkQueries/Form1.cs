@@ -2,14 +2,7 @@ using System.Text;
 
 namespace EntityFrameworkQueries
 {
-    class VendorLocation
-    {
-        public string VendorName { get; set; }
-
-        public string VendorCity { get; set; }
-
-        public string VendorState { get; set; }
-    }
+    
     public partial class Form1 : Form
     {
         public Form1()
@@ -84,5 +77,14 @@ namespace EntityFrameworkQueries
         }
 
 
+    }
+
+    class VendorLocation
+    {
+        public string VendorName { get; set; }
+
+        public string VendorCity { get; set; }
+
+        public string VendorState { get; set; }
     }
 }
