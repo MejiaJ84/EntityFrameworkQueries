@@ -76,7 +76,28 @@ namespace EntityFrameworkQueries
             MessageBox.Show(displayStr.ToString()); // message box cant't display string builder so .tostring is needed here
         }
 
+        private void btnMiscQueries_Click(object sender, EventArgs e)
+        {
+            APContext dbContext = new();
 
+            // Check if vendor exists in WA
+            bool doesExist = dbContext.Vendors
+                             .Where(v => v.VendorState == "WA").Any();
+
+            // Get number of invoices
+            int invoiceCount = dbContext.Invoices.Count();
+                              
+            // Single vendor query
+            // single() only returns one element in a sequence, crashes if doesn't exist
+            // singleOrDefault() only returns one element in a sequence or null if doesn't exist
+            // ? question mark in front of the Vendor says that it could be null and gets rid of green lines
+            Vendor? vendor = dbContext.Vendors
+                         .Where(v => v.VendorName == "IBM").SingleOrDefault(); 
+            if (vendor != null)
+            {
+                // do something with vendor object
+            }
+        }
     }
 
     class VendorLocation
