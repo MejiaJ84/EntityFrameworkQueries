@@ -33,7 +33,7 @@ namespace EntityFrameworkQueries
                 optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AP");
             }
 
-            optionsBuilder.LogTo(message => Debug.WriteLine(message), new[] { DbLoggerCategory.Database.Command.Name }); // logs query in the output window
+            optionsBuilder.LogTo(message => Debug.WriteLine(message), new[] { DbLoggerCategory.Query.Name }); // logs query in the output window
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
