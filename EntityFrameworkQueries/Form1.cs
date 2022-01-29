@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EntityFrameworkQueries
@@ -98,7 +101,28 @@ namespace EntityFrameworkQueries
                 // do something with vendor object
             }
         }
+
+        private void btnVendorInvoices_Click(object sender, EventArgs e)
+        {
+            APContext dbContext = new();
+
+            List<Vendor> allVendors = dbContext.Vendors.Include(v => v.Invoices).ToList();
+
+            StringBuilder results = new();
+
+            foreach (Vendor vendor in allVendors)
+            {
+                results.Append(vendor.VendorName);
+                foreach (Invoice invoices in vendor.Invoices)
+                {
+                    results.Append(", " + invoices.InvoiceNumber);
+                }
+                results.AppendLine();
+            }
+            MessageBox.Show(results.ToString());
+        }
     }
+
 
     class VendorLocation
     {
